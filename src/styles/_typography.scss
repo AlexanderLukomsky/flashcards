@@ -1,0 +1,104 @@
+:root {
+  --font-family-primary: "Roboto", sans-serif;
+
+  // line heights
+  --line-height-s: 16px;
+  --line-height-m: 24px;
+  --line-height-l: 36px;
+
+  // font sizes
+  //12px:
+  --font-size-xs: 0.75rem;
+
+  //14px:
+  --font-size-s: 0.875rem;
+
+  //16px:
+  --font-size-m: 1rem;
+
+  //18px:
+  --font-size-l: 1.125rem;
+
+  //20px:
+  --font-size-xl: 1.25rem;
+
+  //26px:
+  --font-size-xxl: 1.625rem;
+
+  // font weights
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}
+
+//variants
+@mixin variant-large {
+  font-size: var(--font-size-xxl); //26px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-l); //36px
+}
+
+@mixin variant-h1 {
+  font-size: var(--font-size-xl); //20px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-l); //36px
+}
+
+@mixin variant-h2 {
+  font-size: var(--font-size-l); //18px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-m); //24px
+}
+
+@mixin variant-h3 {
+  font-size: var(--font-size-m); //16px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-m); //24px
+}
+
+@mixin variant-body-1 {
+  font-size: var(--font-size-m); //16px
+  font-weight: var(--font-weight-normal); //400
+  line-height: var(--line-height-m); //24px
+}
+
+@mixin variant-body-2 {
+  font-size: var(--font-size-s); //14px
+  font-weight: var(--font-weight-normal); //400
+  line-height: var(--line-height-m); //24px
+}
+
+@mixin variant-subtitle-1 {
+  font-size: var(--font-size-m); //16px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-m); //24px
+}
+
+@mixin variant-subtitle-2 {
+  font-size: var(--font-size-s); //14px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-m); //24px;
+}
+
+@mixin variant-caption {
+  font-size: var(--font-size-xs); //12px
+  font-weight: var(--font-weight-normal); //400
+  line-height: var(--line-height-s); //16px
+}
+
+@mixin variant-overline {
+  font-size: var(--font-size-xs); //12px
+  font-weight: var(--font-weight-bold); //700
+  line-height: var(--line-height-s); //16px
+}
+
+@mixin variant-link-1 {
+  font-size: var(--font-size-s); //14px
+  font-weight: var(--font-weight-normal); //400
+  line-height: var(--line-height-m); //24px;
+}
+
+@mixin variant-link-2 {
+  font-size: var(--font-size-xs); //12px
+  font-weight: var(--font-weight-normal); //400
+  line-height: var(--line-height-s); //16px
+}

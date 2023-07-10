@@ -1,5 +1,4 @@
 import { ReactNode, ComponentPropsWithoutRef } from 'react';
-
 import styles from './card.module.scss';
 
 export type CardProps = {

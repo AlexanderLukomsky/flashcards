@@ -1,8 +1,8 @@
-import { LogoutIcon } from './assets/icons';
-import { Button } from './components/ui/button';
+import { Checkbox, CheckboxControlLabel } from './components/ui/checkbox';
 
 export const App = () => (
-  <div>
-    <Button IconStart={<LogoutIcon />}>Button</Button>
+  <div style={{ padding: '10px' }}>
+    <CheckboxControlLabel control={<Checkbox />} label="Check-box" />
+    <Checkbox disabled />
   </div>
 );

@@ -1,0 +1,38 @@
+@import "../../../styles/typography-variants";
+
+.large {
+  @include variant-large;
+}
+.h1 {
+  @include variant-h1;
+}
+.h2 {
+  @include variant-h2;
+}
+.h3 {
+  @include variant-h3;
+}
+.subtitle1 {
+  @include variant-subtitle1;
+}
+.subtitle2 {
+  @include variant-subtitle2;
+}
+.body1 {
+  @include variant-body1;
+}
+.body2 {
+  @include variant-body2;
+}
+.caption {
+  @include variant-caption;
+}
+.link1 {
+  @include variant-link1;
+}
+.link2 {
+  @include variant-link2;
+}
+.overline {
+  @include variant-overline;
+}

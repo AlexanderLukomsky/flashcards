@@ -1,0 +1,95 @@
+@import "../../../styles/typography-variants";
+
+.general {
+  @include variant-subtitle2;
+  border-radius: 0.25rem;
+  padding: 0.375rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.62rem;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-info-700);
+  }
+}
+
+.primary {
+  background-color: var(--color-primary-500);
+  box-shadow: 0px 4px 18px 0px rgba(140, 97, 255, 0.35);
+  &:hover {
+    background-color: var(--color-primary-300);
+  }
+  &:active {
+    background-color: var(--color-primary-700);
+  }
+  &:disabled {
+    color: var(--color-light-900);
+    background-color: var(--color-primary-900);
+  }
+}
+
+.secondary {
+  background-color: var(--color-dark-300);
+  box-shadow: 0px 2px 10px 0px rgba(109, 109, 109, 0.25);
+  &:hover {
+    background-color: var(--color-dark-100);
+  }
+  &:active {
+    background-color: var(--color-dark-500);
+  }
+  &:disabled {
+    color: var(--color-light-900);
+    background-color: var(--color-dark-300);
+  }
+}
+
+.tertiary {
+  padding: 0.3125rem 1.6875rem;
+  color: var(--color-primary-500);
+  background-color: transparent;
+  border: 1px solid;
+  border-color: var(--color-primary-500);
+  &:hover {
+    background-color: var(--color-dark-500);
+    border-color: var(--color-primary-700);
+  }
+  &:active {
+    background-color: var(--color-primary-900);
+    border-color: var(--color-primary-700);
+  }
+  &:focus-visible {
+    border-color: transparent;
+  }
+  &:disabled {
+    color: var(--color-primary-900);
+    border-color: var(--color-primary-900);
+    background-color: transparent;
+  }
+}
+
+.link {
+  @include variant-subtitle1;
+  border-radius: 0;
+  padding: 0.375rem 0;
+  color: var(--color-primary-500);
+  background-color: transparent;
+  &:hover {
+    color: var(--color-primary-300);
+  }
+  &:active {
+    color: var(--color-primary-700);
+  }
+  &:focus-visible {
+    border-radius: 8.125rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  &:disabled {
+    color: var(--color-primary-900);
+    border-color: var(--color-primary-900);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}

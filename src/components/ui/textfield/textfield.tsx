@@ -1,11 +1,4 @@
-import {
-  ElementType,
-  ComponentPropsWithoutRef,
-  useState,
-  useRef,
-  FocusEvent,
-  MouseEvent,
-} from 'react';
+import { ElementType, ComponentPropsWithoutRef, useRef } from 'react';
 import style from './textfield.module.scss';
 import { Typography } from '../typography';
 import {
@@ -15,6 +8,7 @@ import {
   SearchOutlineIcon,
 } from '../../../assets/icons';
 import { Button } from '../button';
+import { useToggle } from '../../../common/hooks';
 
 type InputType = 'password' | 'search' | 'text';
 
@@ -23,9 +17,7 @@ export type BaseTextFieldProps = {
   type?: InputType;
   label?: string;
   className?: string;
-  placeholder?: string;
   fullWidth?: boolean;
-  onChange?: () => void;
   onClear?: () => void;
 };
 
@@ -36,104 +28,55 @@ export const TextField = <T extends ElementType = 'input'>({
   value,
   type = 'text',
   label,
-  placeholder,
   fullWidth,
   onClear,
-  onChange,
   ...props
 }: TextFieldProps<T>) => {
   const { id, onFocus, onBlur, onClick, onMouseDown, ...restProps } = props;
 
-  const initialInputType = type === 'password' ? 'password' : 'text';
-
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [inputType, setInputType] = useState<InputType>(initialInputType);
-  const [isActive, setIsActive] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isLeave, setIsLeave] = useState(false);
+  const { value: isViewPassword, onToggle: toggleViewPassword } = useToggle();
 
-  const styleVariantType = type === 'search' ? type : inputType;
-
-  const activeClassName = isActive ? ` ${style.active}` : '';
-
-  const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
-    if (onFocus) onFocus(event);
-
-    setIsFocused(true);
-  };
-
-  const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-    if (onBlur) onBlur(event);
-
-    if (!isLeave) return;
-
-    setIsFocused(false);
-    setIsActive(false);
-  };
-
-  const handleClick = (event: MouseEvent<HTMLInputElement>) => {
-    if (onClick) onClick(event);
-
-    setIsActive(true);
-  };
-
-  const handleMouseDown = (event: MouseEvent<HTMLInputElement>) => {
-    if (onMouseDown) onMouseDown(event);
-
-    setIsActive(true);
-  };
-
-  const handleMouseEnter = () => {
-    setIsLeave(false);
-  };
-  const handleMouseLeave = () => {
-    setIsLeave(true);
-  };
+  const isSearchType = type === 'search';
+  const isPasswordType = type === 'password';
 
   const toggleShowPassword = () => {
-    setInputType((prev) => (prev === 'password' ? 'text' : 'password'));
-
     inputRef.current?.focus();
+
+    toggleViewPassword();
+
+    const start = inputRef.current?.selectionStart ?? 0;
+    const end = inputRef.current?.selectionEnd ?? 0;
+
+    requestAnimationFrame(() => {
+      inputRef.current?.setSelectionRange(start, end);
+    });
   };
 
   const handleClear = () => {
-    if (onClear) onClear();
+    onClear?.();
 
     inputRef.current?.focus();
   };
 
   return (
     <>
-      <label htmlFor={id} className={style.label}>
-        {label && (
-          <Typography variant="body2" component="span">
-            {label}
-          </Typography>
-        )}
-      </label>
+      {label && (
+        <Typography htmlFor={id} variant="body2" component="label" className={style.label}>
+          {label}
+        </Typography>
+      )}
 
       {/* container input and icons - relative */}
-      <div
-        className={`${style.wrapper}${isFocused ? ` ${style.focused}` : ''}${activeClassName} ${
-          style[type]
-        } ${fullWidth ? ` ${style.fullWidth}` : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className={`${style.wrapper} ${style[type]} ${fullWidth ? ` ${style.fullWidth}` : ''}`}>
         {/* container input */}
         <div className={`${style.input_container}`}>
           <input
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onClick={handleClick}
-            onMouseDown={handleMouseDown}
-            onChange={onChange}
             ref={inputRef}
             value={value}
-            type={inputType}
-            className={`${style.input} ${style[styleVariantType]}`}
-            placeholder={placeholder}
+            type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
+            className={`${style.input} ${style[type]}`}
             id={id}
             {...restProps}
           />
@@ -145,25 +88,25 @@ export const TextField = <T extends ElementType = 'input'>({
             <Button
               onClick={handleClear}
               variant="icon"
-              IconStart={<CloseIcon className={`${style.icon}${activeClassName}`} />}
+              IconStart={<CloseIcon className={`${style.icon}`} />}
             />
           </div>
         )}
 
         {type === 'search' && (
-          <SearchOutlineIcon className={`${style.icon} ${style.icon_search}${activeClassName}`} />
+          <SearchOutlineIcon className={`${style.icon} ${style.icon_search}`} />
         )}
 
-        {type === 'password' && (
+        {isPasswordType && (
           <div className={style.button_container}>
             <Button
               onClick={toggleShowPassword}
               variant="icon"
               IconStart={
-                inputType === 'password' ? (
-                  <EyeOutlineIcon className={`${style.icon}${activeClassName}`} />
+                isViewPassword ? (
+                  <EyeOffOutlineIcon className={`${style.icon}`} />
                 ) : (
-                  <EyeOffOutlineIcon className={`${style.icon}${activeClassName}`} />
+                  <EyeOutlineIcon className={`${style.icon}`} />
                 )
               }
             />

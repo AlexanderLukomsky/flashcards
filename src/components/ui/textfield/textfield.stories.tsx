@@ -13,19 +13,31 @@ const meta = {
 export const Text: Story = {
   args: {
     type: 'text',
+    label: 'label',
+    placeholder: 'placeholder',
+    disabled: false,
+    id: 'text',
   },
 };
 
 export const Password: Story = {
   args: {
     type: 'password',
+    label: 'label',
+    placeholder: 'placeholder',
+    disabled: false,
   },
 };
 
 export const Search: Story = {
+  args: { label: 'label', type: 'search', value: 'default value', id: 'search' },
+};
+
+export const DisabledSearch: Story = {
   args: {
     type: 'search',
-    value: '',
+    value: 'disabled',
+    disabled: true,
   },
 };
 

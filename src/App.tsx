@@ -8,10 +8,10 @@ export const App = () => {
     <div style={{ padding: '10px' }}>
       <TextField
         value={value}
-        onChange={(e) => setValue(e.currentTarget.value)}
+        onChange={(e: any) => setValue(e.currentTarget.value)}
         onClear={() => setValue('')}
         label="label"
-        type="search"
+        type="password"
         placeholder="value"
         id="input"
       />

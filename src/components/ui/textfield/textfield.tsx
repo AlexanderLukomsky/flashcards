@@ -32,7 +32,7 @@ export const TextField = <T extends ElementType = 'input'>({
   onClear,
   ...props
 }: TextFieldProps<T>) => {
-  const { id, onFocus, onBlur, onClick, onMouseDown, ...restProps } = props;
+  const { id, disabled, ...restProps } = props;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -60,19 +60,31 @@ export const TextField = <T extends ElementType = 'input'>({
     inputRef.current?.focus();
   };
 
+  const handleIconClick = () => {
+    inputRef.current?.focus();
+  };
+
   return (
     <>
       {label && (
-        <Typography htmlFor={id} variant="body2" component="label" className={style.label}>
+        <Typography
+          htmlFor={id}
+          variant="body2"
+          component="label"
+          className={`${style.label} ${disabled ? ` ${style.disabled}` : ''}`}
+        >
           {label}
         </Typography>
       )}
 
-      {/* container input and icons - relative */}
-      <div className={`${style.wrapper} ${style[type]} ${fullWidth ? ` ${style.fullWidth}` : ''}`}>
-        {/* container input */}
+      <div
+        className={`${style.wrapper} ${style[type]} ${fullWidth ? ` ${style.fullWidth}` : ''}${
+          disabled ? ` ${style.disabled}` : ''
+        }`}
+      >
         <div className={`${style.input_container}`}>
           <input
+            disabled={disabled}
             ref={inputRef}
             value={value}
             type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
@@ -82,10 +94,10 @@ export const TextField = <T extends ElementType = 'input'>({
           />
         </div>
 
-        {/* buttons and icon */}
-        {type === 'search' && !!value && (
+        {isSearchType && !!value && (
           <div className={style.button_container}>
             <Button
+              disabled={disabled}
               onClick={handleClear}
               variant="icon"
               IconStart={<CloseIcon className={`${style.icon}`} />}
@@ -93,13 +105,17 @@ export const TextField = <T extends ElementType = 'input'>({
           </div>
         )}
 
-        {type === 'search' && (
-          <SearchOutlineIcon className={`${style.icon} ${style.icon_search}`} />
+        {isSearchType && (
+          <SearchOutlineIcon
+            onClick={handleIconClick}
+            className={`${style.icon} ${style.icon_search}`}
+          />
         )}
 
         {isPasswordType && (
           <div className={style.button_container}>
             <Button
+              disabled={disabled}
               onClick={toggleShowPassword}
               variant="icon"
               IconStart={

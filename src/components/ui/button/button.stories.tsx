@@ -34,9 +34,9 @@ export const PrimaryWithIcon: Story = {
   },
 };
 
-export const PrimaryIconButton: Story = {
+export const IconButton: Story = {
   args: {
-    variant: 'primary',
+    variant: 'icon',
     disabled: false,
     IconStart: <LogoutIcon />,
   },

@@ -2,14 +2,22 @@
 
 .general {
   @include variant-subtitle2;
+  position: relative;
+  line-height: normal;
   border-radius: 0.25rem;
   padding: 0.375rem 1.75rem;
   display: inline-flex;
   align-items: center;
   gap: 0.62rem;
-
+  min-height: 2.25rem;
   &:focus-visible {
     outline: 2px solid var(--color-info-700);
+  }
+
+  &:disabled {
+    svg {
+      fill: var(--color-light-900);
+    }
   }
 }
 
@@ -80,13 +88,38 @@
     color: var(--color-primary-700);
   }
   &:focus-visible {
-    border-radius: 8.125rem;
-    padding: 0.375rem 0.75rem;
+    outline: none;
+    &::before {
+      content: "";
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: calc(100% + 1.5rem);
+      height: calc(100% + 0.75rem);
+      outline: none;
+      border: 2px solid var(--color-info-700);
+      border-radius: 8.125rem;
+    }
   }
 
   &:disabled {
     color: var(--color-primary-900);
     border-color: var(--color-primary-900);
+  }
+}
+
+.icon {
+  padding: 0;
+  background-color: transparent;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  &:disabled {
+    svg {
+      fill: var(--color-dark-300);
+    }
   }
 }
 

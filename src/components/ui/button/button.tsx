@@ -4,7 +4,7 @@ import styles from './button.module.scss';
 
 type BaseButtonProps<T> = {
   component?: T;
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'icon';
   fullWidth?: boolean;
   children?: ReactNode;
   className?: string;

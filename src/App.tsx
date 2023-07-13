@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField } from './components/ui/textfield';
+import { Typography } from './components/ui/typography';
 
 export const App = () => {
   const [value, setValue] = useState('');
@@ -15,6 +16,7 @@ export const App = () => {
         placeholder="value"
         id="input"
       />
+      <Typography>123</Typography>
     </div>
   );
 };

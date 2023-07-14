@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox, CheckboxControlLabel } from '.';
+import { Checkbox } from '.';
 
 type Story = StoryObj<typeof meta>;
 
@@ -19,12 +19,11 @@ export const Checked: Story = { args: { checked: true } };
 export const UnChecked: Story = { args: { checked: false } };
 
 export const CheckboxWithLabel: Story = {
-  render: () => <CheckboxControlLabel control={<Checkbox />} label="Check-box" />,
-  args: { checked: false },
+  args: { disabled: false, label: 'Check-box' },
 };
 
 export const CheckboxDisabled: Story = {
-  render: () => <CheckboxControlLabel disabled control={<Checkbox />} label="Check-box" />,
+  args: { disabled: true, label: 'Check-box' },
 };
 
 export default meta;

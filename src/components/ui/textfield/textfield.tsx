@@ -21,7 +21,7 @@ export type BaseTextFieldProps = {
   onClear?: () => void;
 };
 
-export type TextFieldProps<T extends ElementType> = BaseTextFieldProps &
+export type TextFieldProps<T extends ElementType = 'input'> = BaseTextFieldProps &
   Omit<ComponentPropsWithoutRef<T>, keyof BaseTextFieldProps | 'type'>;
 
 export const TextField = <T extends ElementType = 'input'>({
@@ -88,7 +88,7 @@ export const TextField = <T extends ElementType = 'input'>({
             ref={inputRef}
             value={value}
             type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
-            className={`${style.input} ${style[type]}`}
+            className={`${style.input} ${style[type]}${value ? ` ${style.not_empty}` : ''}`}
             id={id}
             {...restProps}
           />

@@ -97,6 +97,10 @@
   &.search {
     padding: 0.375rem 0.4375rem 0.375rem 2.56rem;
   }
+
+  &.not_empty:not(:disabled) {
+    color: var(--color-light-100);
+  }
 }
 
 //button

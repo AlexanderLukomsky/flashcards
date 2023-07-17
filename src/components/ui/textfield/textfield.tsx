@@ -18,6 +18,8 @@ export type BaseTextFieldProps = {
   label?: string;
   className?: string;
   fullWidth?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
   onClear?: () => void;
 };
 
@@ -29,6 +31,8 @@ export const TextField = <T extends ElementType = 'input'>({
   type = 'text',
   label,
   fullWidth,
+  isError,
+  errorMessage,
   onClear,
   ...props
 }: TextFieldProps<T>) => {
@@ -40,6 +44,8 @@ export const TextField = <T extends ElementType = 'input'>({
 
   const isSearchType = type === 'search';
   const isPasswordType = type === 'password';
+  const disabledClassName = disabled ? ` ${style.disabled}` : '';
+  const errorClassName = isError ? ` ${style.error}` : '';
 
   const toggleShowPassword = () => {
     inputRef.current?.focus();
@@ -65,38 +71,37 @@ export const TextField = <T extends ElementType = 'input'>({
   };
 
   return (
-    <>
+    <div className={`${style.wrapper} ${fullWidth ? ` ${style.fullWidth}` : ''}`}>
       {label && (
         <Typography
           htmlFor={id}
           variant="body2"
           component="label"
-          className={`${style.label} ${disabled ? ` ${style.disabled}` : ''}`}
+          className={`${style.label}${disabledClassName}`}
         >
           {label}
         </Typography>
       )}
 
       <div
-        className={`${style.wrapper} ${style[type]} ${fullWidth ? ` ${style.fullWidth}` : ''}${
-          disabled ? ` ${style.disabled}` : ''
-        }`}
+        className={`${style.input_container} ${style[type]}${disabledClassName}${errorClassName}`}
       >
-        <div className={`${style.input_container}`}>
-          <input
-            disabled={disabled}
-            ref={inputRef}
-            value={value}
-            type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
-            className={`${style.input} ${style[type]}${value ? ` ${style.not_empty}` : ''}`}
-            id={id}
-            {...restProps}
-          />
-        </div>
+        <input
+          disabled={disabled}
+          ref={inputRef}
+          value={value}
+          type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
+          className={`${style.input} ${style[type]}${errorClassName}${
+            value ? ` ${style.not_empty}` : ''
+          }`}
+          id={id}
+          {...restProps}
+        />
 
         {isSearchType && !!value && (
           <div className={style.button_container}>
             <Button
+              type="button"
               disabled={disabled}
               onClick={handleClear}
               variant="icon"
@@ -115,6 +120,7 @@ export const TextField = <T extends ElementType = 'input'>({
         {isPasswordType && (
           <div className={style.button_container}>
             <Button
+              type="button"
               disabled={disabled}
               onClick={toggleShowPassword}
               variant="icon"
@@ -129,6 +135,12 @@ export const TextField = <T extends ElementType = 'input'>({
           </div>
         )}
       </div>
-    </>
+
+      {errorMessage !== undefined && (
+        <Typography className={style.errorMessage} variant="overline">
+          {errorMessage}
+        </Typography>
+      )}
+    </div>
   );
 };

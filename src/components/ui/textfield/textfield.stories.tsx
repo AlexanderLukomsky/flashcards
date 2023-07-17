@@ -33,6 +33,15 @@ export const Search: Story = {
   args: { label: 'label', type: 'search', value: 'default value', id: 'search' },
 };
 
+export const WithErrorMessage: Story = {
+  args: {
+    isError: true,
+    errorMessage: 'error message',
+    label: 'error textfield label',
+    value: 'disabled textfield value',
+  },
+};
+
 export const DisabledSearch: Story = {
   args: {
     type: 'search',

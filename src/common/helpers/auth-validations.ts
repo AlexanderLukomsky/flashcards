@@ -1,16 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { z } from 'zod';
 
 // error messages
 const EmailMessages = {
   empty: 'Enter email',
   invalid: 'invalid email address',
-};
-
-const LoginMessages = {
-  empty: 'Enter login',
-  min: 'login must be at least 3 characters',
-  max: 'login must be no more than 12 characters',
 };
 
 const PasswordMessages = {
@@ -22,14 +15,14 @@ const PasswordMessages = {
 // validation  schemes
 const email = z.string().trim().nonempty(EmailMessages.empty).email(EmailMessages.invalid);
 
-const login = z
+const password = z
   .string()
   .trim()
-  .nonempty(LoginMessages.empty)
-  .min(3, LoginMessages.min)
-  .max(12, LoginMessages.max);
+  .nonempty(PasswordMessages.empty)
+  .min(3, PasswordMessages.min)
+  .max(8, PasswordMessages.max);
 
-const password = z
+const confirmPassword = z
   .string()
   .trim()
   .nonempty(PasswordMessages.empty)
@@ -41,5 +34,13 @@ const rememberMe = z.boolean();
 // result schemes
 export const signInSchema = z.object({ email, password, rememberMe });
 
+export const registrationSchema = z
+  .object({ email, password, confirmPassword })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
+
 // types
 export type SignInFormData = z.infer<typeof signInSchema>;
+export type RegistrationFormData = z.infer<typeof registrationSchema>;

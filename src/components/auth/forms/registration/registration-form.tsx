@@ -4,35 +4,36 @@ import { Link } from 'react-router-dom';
 import { Card } from '../../../ui/card';
 import { ControlledTextfield } from '../../../ui/controlled';
 import { Typography } from '../../../ui/typography';
-import { SignInFormData, signInSchema } from '../../../../common/helpers';
-import { ControlledCheckbox } from '../../../ui/controlled/controlled-checkbox';
+import { RegistrationFormData, registrationSchema } from '../../../../common/helpers';
 import { Button } from '../../../ui/button';
 import rootStyle from '../style.module.scss';
 import style from './style.module.scss';
 
-export const SignInForm = () => {
+export const RegistrationForm = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<SignInFormData>({
-    defaultValues: { email: '', password: '', rememberMe: false },
-    resolver: zodResolver(signInSchema),
+  } = useForm<RegistrationFormData>({
+    defaultValues: { email: '', password: '', confirmPassword: '' },
+    resolver: zodResolver(registrationSchema),
   });
 
   const isEmailError = !!errors.email?.message;
   const isPasswordError = !!errors.password?.message;
+  const isConfirmPasswordError = !!errors.confirmPassword?.message;
 
   const emailErrorMessage = errors.email?.message || '';
   const passwordErrorMessage = errors.password?.message || '';
+  const confirmPasswordErrorMessage = errors.confirmPassword?.message || '';
 
-  const onSubmit = handleSubmit((formData: SignInFormData) => {});
+  const onSubmit = handleSubmit((formData: RegistrationFormData) => {});
 
   return (
     <Card className={rootStyle.card}>
       <form onSubmit={onSubmit} className={rootStyle.form}>
         <Typography variant="large" className={rootStyle.title}>
-          Sign In
+          Sign Up
         </Typography>
 
         <ControlledTextfield
@@ -52,28 +53,27 @@ export const SignInForm = () => {
           errorMessage={passwordErrorMessage}
         />
 
-        <ControlledCheckbox
+        <ControlledTextfield
+          label="Confirm Password"
           control={control}
-          name="rememberMe"
-          label="Remember me"
-          containerClassName={style.checkbox}
+          name="confirmPassword"
+          type="password"
+          isError={isConfirmPasswordError}
+          errorMessage={confirmPasswordErrorMessage}
+          containerProps={{ className: style.confirm_password }}
         />
 
-        <Typography variant="body2" component={Link} to="/" className={style.forgot_password}>
-          Forgot Password?
-        </Typography>
-
         <Button type="submit" fullWidth>
-          Sign In
+          Sign Up
         </Button>
       </form>
 
       <Typography variant="body2" className={rootStyle.prompt}>
-        Don&apos;t have an account?
+        Already have an account?
       </Typography>
 
       <Button component={Link} to="/" variant="link" className={rootStyle.link}>
-        Sign Up
+        Sign In
       </Button>
     </Card>
   );

@@ -5,7 +5,7 @@ import { Card } from './card';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Components/UI/Card',
   component: Card,
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>;

@@ -4,7 +4,7 @@ import { Typography } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Typography',
+  title: 'Components/UI/Typography',
   component: Typography,
   tags: ['autodocs'],
   argTypes: {

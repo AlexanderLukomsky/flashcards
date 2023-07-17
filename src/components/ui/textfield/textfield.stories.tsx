@@ -4,7 +4,7 @@ import { TextField } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/TextField',
+  title: 'Components/UI/TextField',
   component: TextField,
   tags: ['autodocs'],
   argTypes: {},

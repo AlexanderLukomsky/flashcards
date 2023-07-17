@@ -4,7 +4,7 @@ import { Checkbox } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Checkbox',
+  title: 'Components/UI/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   args: {

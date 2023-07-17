@@ -5,7 +5,7 @@ import { NewPasswordForm } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/New Password Form',
+  title: 'Components/Forms/New Password Form',
   component: NewPasswordForm,
   tags: ['autodocs'],
 } satisfies Meta<typeof NewPasswordForm>;

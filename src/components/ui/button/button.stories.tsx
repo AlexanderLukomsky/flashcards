@@ -5,7 +5,7 @@ import { LogoutIcon } from '../../../assets/icons';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Components/UI/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

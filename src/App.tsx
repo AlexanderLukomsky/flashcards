@@ -1,3 +1,4 @@
+import { ForgotPasswordForm } from './components/auth/forms/forgot-password';
 import { RegistrationForm } from './components/auth/forms/registration';
 import { SignInForm } from './components/auth/forms/sign-in';
 
@@ -13,5 +14,6 @@ export const App = () => (
   >
     <SignInForm />
     <RegistrationForm />
+    <ForgotPasswordForm />
   </div>
 );

@@ -4,35 +4,31 @@ import { Link } from 'react-router-dom';
 import { Card } from '../../../ui/card';
 import { ControlledTextfield } from '../../../ui/controlled';
 import { Typography } from '../../../ui/typography';
-import { RegistrationFormData, registrationSchema } from '../../../../common/helpers';
+import { ForgotPasswordFormData, forgotPasswordSchema } from '../../../../common/helpers';
 import { Button } from '../../../ui/button';
 import rootStyle from '../style.module.scss';
 import style from './style.module.scss';
 
-export const RegistrationForm = () => {
+export const ForgotPasswordForm = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RegistrationFormData>({
-    defaultValues: { email: '', password: '', confirmPassword: '' },
-    resolver: zodResolver(registrationSchema),
+  } = useForm<ForgotPasswordFormData>({
+    defaultValues: { email: '' },
+    resolver: zodResolver(forgotPasswordSchema),
   });
 
   const isEmailError = !!errors.email?.message;
-  const isPasswordError = !!errors.password?.message;
-  const isConfirmPasswordError = !!errors.confirmPassword?.message;
 
   const emailErrorMessage = errors.email?.message || '';
-  const passwordErrorMessage = errors.password?.message || '';
-  const confirmPasswordErrorMessage = errors.confirmPassword?.message || '';
 
   const onSubmit = handleSubmit(() => {});
 
   return (
     <Card className={rootStyle.card}>
-      <Typography variant="large" className={rootStyle.title}>
-        Sign Up
+      <Typography variant="large" className={style.title}>
+        Forgot your password?
       </Typography>
 
       <form onSubmit={onSubmit} className={rootStyle.form}>
@@ -44,34 +40,19 @@ export const RegistrationForm = () => {
           errorMessage={emailErrorMessage}
         />
 
-        <ControlledTextfield
-          label="Password"
-          control={control}
-          name="password"
-          type="password"
-          isError={isPasswordError}
-          errorMessage={passwordErrorMessage}
-        />
-
-        <ControlledTextfield
-          label="Confirm Password"
-          control={control}
-          name="confirmPassword"
-          type="password"
-          isError={isConfirmPasswordError}
-          errorMessage={confirmPasswordErrorMessage}
-          containerProps={{ className: style.confirm_password }}
-        />
+        <Typography variant="body2" className={style.description}>
+          Enter your email address and we will send you further instructions
+        </Typography>
 
         <Button type="submit" fullWidth>
-          Sign Up
+          Send Instructions
         </Button>
       </form>
       <Typography variant="body2" className={rootStyle.prompt}>
-        Already have an account?
+        Did you remember your password?
       </Typography>
       <Button component={Link} to="/" variant="link" className={rootStyle.link}>
-        Sign In
+        Try logging in
       </Button>
     </Card>
   );

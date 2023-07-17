@@ -5,24 +5,12 @@ import { SignInForm } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/SignInForm',
+  title: 'Components/Sign In Form',
   component: SignInForm,
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      options: ['primary', 'secondary', 'tertiary', 'link'],
-      control: { type: 'radio' },
-    },
-    component: { control: { type: 'text' } },
-  },
 } satisfies Meta<typeof SignInForm>;
 
 export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    children: 'Primary Button',
-    disabled: false,
-  },
   decorators: [withRouter],
 };
 

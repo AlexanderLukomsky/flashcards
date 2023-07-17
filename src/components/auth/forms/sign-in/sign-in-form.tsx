@@ -30,11 +30,11 @@ export const SignInForm = () => {
 
   return (
     <Card className={rootStyle.card}>
-      <form onSubmit={onSubmit} className={rootStyle.form}>
-        <Typography variant="large" className={rootStyle.title}>
-          Sign In
-        </Typography>
+      <Typography variant="large" className={rootStyle.title}>
+        Sign In
+      </Typography>
 
+      <form onSubmit={onSubmit} className={rootStyle.form}>
         <ControlledTextfield
           label="Email"
           control={control}

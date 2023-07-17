@@ -13,6 +13,7 @@ const variantsComponentsMap: Record<string, ElementType> = {
   overline: 'span',
   link1: 'span',
   link2: 'span',
+  body2: 'p',
   body1: 'p',
 };
 

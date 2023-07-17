@@ -2,6 +2,7 @@
 
 .general {
   @include variant-subtitle2;
+  color: var(--color-light-100);
   position: relative;
   line-height: normal;
   border-radius: 0.25rem;

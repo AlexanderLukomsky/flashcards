@@ -11,6 +11,7 @@ type BaseCheckboxProps = {
   disabled?: boolean;
   label?: string;
   htmlFor?: string;
+  containerClassName?: string;
 };
 
 export type CheckboxProps = BaseCheckboxProps &
@@ -18,12 +19,23 @@ export type CheckboxProps = BaseCheckboxProps &
 
 export const Checkbox = forwardRef<ElementRef<typeof RadixCheckbox.Root>, CheckboxProps>(
   (
-    { onCheckedChange, checked, className, disabled, label, htmlFor, ...restProps }: CheckboxProps,
+    {
+      onCheckedChange,
+      checked,
+      className,
+      disabled,
+      label,
+      htmlFor,
+      containerClassName,
+      ...restProps
+    }: CheckboxProps,
     forwardRef,
   ) => (
     <label
       htmlFor={htmlFor}
-      className={`${style.label}${disabled ? ` ${style.label_disabled}` : ''}`}
+      className={`${style.label}${disabled ? ` ${style.label_disabled}` : ''}${
+        containerClassName ? ` ${containerClassName}` : ''
+      }`}
     >
       <RadixCheckbox.Root
         onCheckedChange={onCheckedChange}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { z } from 'zod';
 
 // error messages
@@ -38,7 +39,7 @@ const password = z
 const rememberMe = z.boolean();
 
 // result schemes
-export const loginSchema = z.object({ email, login, password, rememberMe });
+export const signInSchema = z.object({ email, password, rememberMe });
 
 // types
-export type LoginForm = z.infer<typeof loginSchema>;
+export type SignInFormData = z.infer<typeof signInSchema>;

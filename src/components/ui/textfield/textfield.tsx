@@ -17,9 +17,9 @@ export type BaseTextFieldProps = {
   type?: InputType;
   label?: string;
   className?: string;
-  fullWidth?: boolean;
   isError?: boolean;
   errorMessage?: string;
+  containerProps?: ComponentPropsWithoutRef<'div'>;
   onClear?: () => void;
 };
 
@@ -30,9 +30,9 @@ export const TextField = <T extends ElementType = 'input'>({
   value,
   type = 'text',
   label,
-  fullWidth,
   isError,
   errorMessage,
+  containerProps,
   onClear,
   ...props
 }: TextFieldProps<T>) => {
@@ -71,7 +71,7 @@ export const TextField = <T extends ElementType = 'input'>({
   };
 
   return (
-    <div className={`${style.wrapper} ${fullWidth ? ` ${style.fullWidth}` : ''}`}>
+    <div {...containerProps}>
       {label && (
         <Typography
           htmlFor={id}

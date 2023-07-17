@@ -43,7 +43,10 @@ export const registrationSchema = z
 
 export const forgotPasswordSchema = z.object({ email });
 
+export const newPasswordSchema = z.object({ password });
+
 // types
 export type SignInFormData = z.infer<typeof signInSchema>;
 export type RegistrationFormData = z.infer<typeof registrationSchema>;
 export type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
+export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;

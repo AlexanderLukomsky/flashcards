@@ -27,7 +27,7 @@ export const RegistrationForm = () => {
   const passwordErrorMessage = errors.password?.message || '';
   const confirmPasswordErrorMessage = errors.confirmPassword?.message || '';
 
-  const onSubmit = handleSubmit((formData: RegistrationFormData) => {});
+  const onSubmit = handleSubmit(() => {});
 
   return (
     <Card className={rootStyle.card}>

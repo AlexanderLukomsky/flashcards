@@ -26,7 +26,7 @@ export const SignInForm = () => {
   const emailErrorMessage = errors.email?.message || '';
   const passwordErrorMessage = errors.password?.message || '';
 
-  const onSubmit = handleSubmit((formData: SignInFormData) => {});
+  const onSubmit = handleSubmit(() => {});
 
   return (
     <Card className={rootStyle.card}>

@@ -1,14 +1,9 @@
 import { ElementType, ComponentPropsWithoutRef, useRef } from 'react';
+import { useToggle } from '@common/hooks';
+import { CloseIcon, EyeOffOutlineIcon, EyeOutlineIcon, SearchOutlineIcon } from '@assets/icons';
 import style from './textfield.module.scss';
 import { Typography } from '../typography';
-import {
-  CloseIcon,
-  EyeOffOutlineIcon,
-  EyeOutlineIcon,
-  SearchOutlineIcon,
-} from '../../../assets/icons';
 import { Button } from '../button';
-import { useToggle } from '../../../common/hooks';
 
 type InputType = 'password' | 'search' | 'text';
 

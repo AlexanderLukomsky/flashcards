@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { EmailSentIcon } from '../../../assets/icons/email-sent';
-import { Button } from '../../ui/button';
-import { Card } from '../../ui/card';
-import { Typography } from '../../ui/typography';
-import rootStyle from '../style.module.scss';
+import { EmailSentIcon } from '@assets/icons/email-sent';
+import { Card } from '@components/ui/card';
+import { Typography } from '@components/ui/typography';
+import { Button } from '@components/ui/button';
 import style from './style.module.scss';
+import rootStyle from '../style.module.scss';
 
 export const EmailNotification = () => (
   <Card className={style.card}>

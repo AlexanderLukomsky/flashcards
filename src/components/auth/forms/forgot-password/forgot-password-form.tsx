@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { Card } from '../../../ui/card';
-import { ControlledTextfield } from '../../../ui/controlled';
-import { Typography } from '../../../ui/typography';
-import { ForgotPasswordFormData, forgotPasswordSchema } from '../../../../common/helpers';
-import { Button } from '../../../ui/button';
+import { Card } from '@components/ui/card';
+import { Button } from '@components/ui/button';
+import { ControlledTextfield } from '@components/ui/controlled';
+import { Typography } from '@components/ui/typography';
+import { ForgotPasswordFormData, forgotPasswordSchema } from '@common/helpers';
 import rootStyle from '../../style.module.scss';
 import style from './style.module.scss';
 

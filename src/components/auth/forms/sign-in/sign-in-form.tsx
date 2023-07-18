@@ -1,14 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { Card } from '../../../ui/card';
-import { ControlledTextfield } from '../../../ui/controlled';
-import { Typography } from '../../../ui/typography';
-import { SignInFormData, signInSchema } from '../../../../common/helpers';
-import { ControlledCheckbox } from '../../../ui/controlled/controlled-checkbox';
-import { Button } from '../../../ui/button';
-import rootStyle from '../../style.module.scss';
+import { SignInFormData, signInSchema } from '@common/helpers';
+import { Card } from '@components/ui/card';
+import { Typography } from '@components/ui/typography';
+import { ControlledTextfield } from '@components/ui/controlled';
+import { ControlledCheckbox } from '@components/ui/controlled/controlled-checkbox';
+import { Button } from '@components/ui/button';
 import style from './style.module.scss';
+import rootStyle from '../../style.module.scss';
 
 export const SignInForm = () => {
   const {

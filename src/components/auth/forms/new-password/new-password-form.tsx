@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Card } from '../../../ui/card';
-import { ControlledTextfield } from '../../../ui/controlled';
-import { Typography } from '../../../ui/typography';
-import { NewPasswordFormData, newPasswordSchema } from '../../../../common/helpers';
-import { Button } from '../../../ui/button';
-import rootStyle from '../../style.module.scss';
+import { NewPasswordFormData, newPasswordSchema } from '@common/helpers';
+import { Typography } from '@components/ui/typography';
+import { ControlledTextfield } from '@components/ui/controlled';
+import { Button } from '@components/ui/button';
+import { Card } from '@components/ui/card';
 import style from './style.module.scss';
+import rootStyle from '../../style.module.scss';
 
 export const NewPasswordForm = () => {
   const {

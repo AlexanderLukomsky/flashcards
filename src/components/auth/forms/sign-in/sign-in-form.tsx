@@ -7,7 +7,7 @@ import { Typography } from '../../../ui/typography';
 import { SignInFormData, signInSchema } from '../../../../common/helpers';
 import { ControlledCheckbox } from '../../../ui/controlled/controlled-checkbox';
 import { Button } from '../../../ui/button';
-import rootStyle from '../style.module.scss';
+import rootStyle from '../../style.module.scss';
 import style from './style.module.scss';
 
 export const SignInForm = () => {

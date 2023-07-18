@@ -6,7 +6,7 @@ import { ControlledTextfield } from '../../../ui/controlled';
 import { Typography } from '../../../ui/typography';
 import { RegistrationFormData, registrationSchema } from '../../../../common/helpers';
 import { Button } from '../../../ui/button';
-import rootStyle from '../style.module.scss';
+import rootStyle from '../../style.module.scss';
 import style from './style.module.scss';
 
 export const RegistrationForm = () => {

@@ -5,7 +5,7 @@ import { ForgotPasswordForm } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Forms/Forgot Password Form',
+  title: 'Components/Auth/Forgot Password Form',
   component: ForgotPasswordForm,
   tags: ['autodocs'],
 } satisfies Meta<typeof ForgotPasswordForm>;

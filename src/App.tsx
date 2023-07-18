@@ -1,3 +1,4 @@
+import { EmailNotification } from './components/auth/email-notification';
 import { ForgotPasswordForm } from './components/auth/forms/forgot-password';
 import { NewPasswordForm } from './components/auth/forms/new-password/new-password-form';
 import { RegistrationForm } from './components/auth/forms/registration';
@@ -17,5 +18,6 @@ export const App = () => (
     <RegistrationForm />
     <ForgotPasswordForm />
     <NewPasswordForm />
+    <EmailNotification />
   </div>
 );

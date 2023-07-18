@@ -5,7 +5,7 @@ import { RegistrationForm } from '.';
 type Story = StoryObj<typeof meta>;
 
 const meta = {
-  title: 'Components/Forms/Registration Form',
+  title: 'Components/Auth/Registration Form',
   component: RegistrationForm,
   tags: ['autodocs'],
 } satisfies Meta<typeof RegistrationForm>;

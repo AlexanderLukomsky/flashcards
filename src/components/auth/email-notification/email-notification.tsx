@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { EmailSentIcon } from '@assets/icons/email-sent';
 import { Card } from '@components/ui/card';
 import { Typography } from '@components/ui/typography';
 import { Button } from '@components/ui/button';
+import { EmailSentIcon } from '@assets/icons';
 import style from './style.module.scss';
 import rootStyle from '../style.module.scss';
 

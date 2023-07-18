@@ -1,0 +1,29 @@
+.th {
+  padding: 0.38rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.typography {
+  position: relative;
+  padding-right: 1rem;
+
+  &.sortable {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 0.475rem;
+  right: 0;
+  transform: translateY(-50%);
+
+  transition: 0.2s ease-in transform;
+
+  &.icon_down {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { LogoutIcon } from '@assets/icons';
 import { Button } from '.';
-import { LogoutIcon } from '../../../assets/icons';
 
 type Story = StoryObj<typeof meta>;
 

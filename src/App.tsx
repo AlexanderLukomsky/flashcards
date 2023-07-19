@@ -2,6 +2,7 @@ import { Nullable } from '@common/types';
 import { Table } from '@components/table/table';
 import { TableBody } from '@components/table/table-body';
 import { Sort, TableHeader } from '@components/table/table-header';
+import { Ratings } from '@components/ui/ratings';
 
 import { useState } from 'react';
 
@@ -74,6 +75,7 @@ export const App = () => {
         padding: '10px',
       }}
     >
+      <Ratings />
       <Table>
         <TableHeader
           sortBy={sort}

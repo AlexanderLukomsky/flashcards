@@ -8,7 +8,7 @@ export type TableBodyProps = {
 export const TableBody = ({ data }: TableBodyProps) => (
   <tbody className={style.tbody}>
     {data.map((item, index) => (
-      <tr key={index}>
+      <tr key={index} className={style.tr}>
         <TableDataCell title={item.title} />
         <TableDataCell title={item.cardsCount} />
         <TableDataCell title={item.updated} />

@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { Nullable } from '@common/types';
-import { TableHeaderCell } from '@components/ui/table-el/th';
+import { TableHeaderCell } from '@components/table/th';
 import style from './style.module.scss';
 
 export type Column = {
@@ -50,13 +50,14 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
   };
 
   return (
-    <thead>
+    <thead className={style.thead}>
       <tr onClick={handleSort}>
         {columns.map((column) => {
           const showSort = column.isSortable && !!sortBy && sortBy.key === column.key;
 
           return (
             <TableHeaderCell
+              title={column.title}
               showSort={showSort}
               key={column.key}
               direction={sortBy?.direction}
@@ -65,9 +66,7 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
                 [DataAttributes.Sortable]: column.isSortable,
               }}
               className={style.th}
-            >
-              {column.title}
-            </TableHeaderCell>
+            />
           );
         })}
       </tr>

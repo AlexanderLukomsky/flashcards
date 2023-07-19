@@ -1,4 +1,5 @@
 import { ElementType } from 'react';
+import clsx from 'clsx';
 import { TypographyProps } from '.';
 import styles from './typography.module.scss';
 
@@ -28,7 +29,7 @@ export const Typography = <T extends ElementType = 'p'>({
   const Component = component || variantsComponentsMap[variant];
 
   return (
-    <Component className={`${styles[variant]}${className ? ` ${className}` : ''}`} {...restProps}>
+    <Component className={clsx(styles[variant], className)} {...restProps}>
       {children}
     </Component>
   );

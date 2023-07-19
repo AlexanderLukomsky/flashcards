@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ChevronUpIcon } from '@assets/icons';
 import { Typography } from '@components/ui/typography';
 import { ComponentPropsWithoutRef } from 'react';
@@ -18,14 +19,12 @@ export const TableHeaderCell = ({
   const { className, ...restProps } = props;
 
   return (
-    <th className={`${style.th}${className ? ` ${className}` : ''}`} {...restProps}>
-      <Typography className={`${style.typography}`} variant="subtitle2" component="span">
+    <th className={clsx(style.th, className)} {...restProps}>
+      <Typography className={style.typography} variant="subtitle2" component="span">
         {children}
 
         {showSort && (
-          <ChevronUpIcon
-            className={`${style.icon} ${direction === 'asc' ? ` ${style.icon_down}` : ''}`}
-          />
+          <ChevronUpIcon className={clsx(style.icon, { [style.icon_down]: direction === 'asc' })} />
         )}
       </Typography>
     </th>

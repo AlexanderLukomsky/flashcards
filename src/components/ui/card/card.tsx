@@ -1,4 +1,5 @@
 import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
 import styles from './card.module.scss';
 
 export type CardProps = {
@@ -7,7 +8,7 @@ export type CardProps = {
 } & ComponentPropsWithoutRef<'div'>;
 
 export const Card = ({ children, className, ...restProps }: CardProps) => (
-  <div className={`${styles.card}${className ? ` ${className}` : ''}`} {...restProps}>
+  <div className={clsx(styles.card, className)} {...restProps}>
     {children}
   </div>
 );

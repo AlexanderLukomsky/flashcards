@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
-
+import clsx from 'clsx';
 import styles from './button.module.scss';
 
 type BaseButtonProps<T> = {
@@ -29,9 +29,9 @@ export const Button = <T extends ElementType = 'button'>({
 
   return (
     <Component
-      className={`${styles.general} ${styles[variant]}${fullWidth ? ` ${styles.fullWidth}` : ''}${
-        className ? ` ${className}` : ''
-      }`}
+      className={clsx(styles.general, styles[variant], className, {
+        [styles.fullWidth]: fullWidth,
+      })}
       {...restProps}
     >
       {IconStart && IconStart}

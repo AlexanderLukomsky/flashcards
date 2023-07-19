@@ -7,17 +7,20 @@
 }
 
 .typography {
+  display: block;
   position: relative;
   padding-right: 1rem;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
 
-  &.sortable {
-    cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
 .icon {
   position: absolute;
-  top: 0.475rem;
+  top: 50%;
   right: 0;
   transform: translateY(-50%);
 

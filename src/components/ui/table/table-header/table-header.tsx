@@ -15,6 +15,11 @@ export type Sort = Nullable<{
 
 export type TableHeaderProps = { columns: Column[]; sortBy: Sort; onSort: (sort: Sort) => void };
 
+enum DataAttributes {
+  Sortable = 'data-sortable',
+  Key = 'data-key',
+}
+
 export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
   const handleSort = (event: MouseEvent<HTMLTableRowElement>) => {
     const { target } = event;
@@ -51,11 +56,13 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
 
           return (
             <TableHeaderCell
-              isSortable={column.isSortable}
               showSort={showSort}
-              dataKey={column.key}
               key={column.key}
               direction={sortBy?.direction}
+              {...{
+                [DataAttributes.Key]: column.key,
+                [DataAttributes.Sortable]: column.isSortable,
+              }}
             >
               {column.title}
             </TableHeaderCell>

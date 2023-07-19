@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { Nullable } from '@common/types';
-import { TableHeaderCell } from '../th';
+import { TableHeaderCell } from '@components/ui/table-el/th';
+import style from './style.module.scss';
 
 export type Column = {
   title: string;
@@ -63,6 +64,7 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
                 [DataAttributes.Key]: column.key,
                 [DataAttributes.Sortable]: column.isSortable,
               }}
+              className={style.th}
             >
               {column.title}
             </TableHeaderCell>

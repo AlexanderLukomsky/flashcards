@@ -1,0 +1,17 @@
+.th {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:not(:last-child) {
+    > span {
+      transition: all 0.1s ease-in;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

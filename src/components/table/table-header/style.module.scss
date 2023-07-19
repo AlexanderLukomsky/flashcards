@@ -1,3 +1,10 @@
+.thead {
+  background-color: var(--color-dark-500);
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: var(--color-dark-500);
+}
+
 .th {
   -moz-user-select: none;
   -webkit-user-select: none;

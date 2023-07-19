@@ -1,5 +1,8 @@
 import { Nullable } from '@common/types';
-import { Sort, TableHeader } from '@components/ui/table/table-header';
+import { Table } from '@components/table/table';
+import { TableBody } from '@components/table/table-body';
+import { Sort, TableHeader } from '@components/table/table-header';
+
 import { useState } from 'react';
 
 const columns = [
@@ -29,6 +32,39 @@ const columns = [
   },
 ];
 
+const data = [
+  {
+    title: 'Project A',
+    cardsCount: 10,
+    updated: '2023-07-07',
+    createdBy: 'John Doe',
+  },
+  {
+    title: 'Project B',
+    cardsCount: 5,
+    updated: '2023-07-06',
+    createdBy: 'Jane Smith',
+  },
+  {
+    title: 'Project C',
+    cardsCount: 8,
+    updated: '2023-07-05',
+    createdBy: 'Alice Johnson',
+  },
+  {
+    title: 'Project D',
+    cardsCount: 3,
+    updated: '2023-07-07',
+    createdBy: 'Bob Anderson',
+  },
+  {
+    title: 'Project E',
+    cardsCount: 12,
+    updated: '2023-07-04',
+    createdBy: 'Emma Davis',
+  },
+];
+
 export const App = () => {
   const [sort, setSort] = useState<Nullable<Sort>>(null);
 
@@ -36,13 +72,9 @@ export const App = () => {
     <div
       style={{
         padding: '10px',
-        display: 'flex',
-        gap: '15px',
-        flexDirection: 'column',
-        alignItems: 'center',
       }}
     >
-      <table>
+      <Table>
         <TableHeader
           sortBy={sort}
           columns={columns}
@@ -50,7 +82,8 @@ export const App = () => {
             setSort(a);
           }}
         />
-      </table>
+        <TableBody data={data} />
+      </Table>
     </div>
   );
 };

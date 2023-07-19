@@ -4,3 +4,9 @@
   border-bottom: 1px solid;
   border-color: var(--color-dark-500);
 }
+
+.tr {
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-dark-500);
+  }
+}

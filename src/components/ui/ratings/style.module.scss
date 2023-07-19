@@ -1,0 +1,46 @@
+.rating {
+  svg {
+    fill: transparent;
+    stroke: var(--color-warning-300);
+    transition: all ease 0.2s;
+  }
+
+  &:hover {
+    svg {
+      fill: var(--color-warning-300);
+    }
+  }
+
+  &:focus-within {
+    svg {
+      fill: var(--color-warning-300);
+    }
+  }
+}
+
+.button {
+  transition: all ease 0.2s;
+
+  &:hover {
+    transform: scale(1.3);
+
+    & ~ .button {
+      svg {
+        fill: transparent;
+        stroke: var(--color-warning-300);
+      }
+    }
+  }
+
+  &:focus-visible {
+    transform: scale(1.3);
+    outline: none;
+
+    & ~ .button {
+      svg {
+        fill: transparent;
+        stroke: var(--color-warning-300);
+      }
+    }
+  }
+}

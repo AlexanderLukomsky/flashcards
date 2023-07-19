@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { Button } from '../button';
 import style from './style.module.scss';
 
-export type RatingsProps = { value?: number; onChange?: (index: number) => void };
+export type RatingsProps = { value?: number; onChange?: (value: number) => void };
 
-export const Ratings = ({ onChange, value = 0 }: RatingsProps) => {
+export const Rating = ({ onChange, value = 0 }: RatingsProps) => {
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onChange?.(+event.currentTarget.value);
   };

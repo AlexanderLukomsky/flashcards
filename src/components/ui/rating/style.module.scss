@@ -1,4 +1,6 @@
 .rating {
+  max-width: max-content;
+
   svg {
     fill: transparent;
     stroke: var(--color-warning-300);
@@ -20,6 +22,13 @@
 
 .button {
   transition: all ease 0.2s;
+  min-width: 1.625rem;
+
+  &.selected {
+    svg {
+      fill: var(--color-warning-300);
+    }
+  }
 
   &:hover {
     transform: scale(1.3);

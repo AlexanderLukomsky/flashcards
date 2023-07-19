@@ -1,6 +1,7 @@
 import { ElementType, ComponentPropsWithoutRef, useRef } from 'react';
 import { useToggle } from '@common/hooks';
 import { CloseIcon, EyeOffOutlineIcon, EyeOutlineIcon, SearchOutlineIcon } from '@assets/icons';
+import clsx from 'clsx';
 import style from './textfield.module.scss';
 import { Typography } from '../typography';
 import { Button } from '../button';
@@ -39,8 +40,6 @@ export const TextField = <T extends ElementType = 'input'>({
 
   const isSearchType = type === 'search';
   const isPasswordType = type === 'password';
-  const disabledClassName = disabled ? ` ${style.disabled}` : '';
-  const errorClassName = isError ? ` ${style.error}` : '';
 
   const toggleShowPassword = () => {
     inputRef.current?.focus();
@@ -72,23 +71,27 @@ export const TextField = <T extends ElementType = 'input'>({
           htmlFor={id}
           variant="body2"
           component="label"
-          className={`${style.label}${disabledClassName}`}
+          className={clsx(style.label, { [style.disabled]: disabled })}
         >
           {label}
         </Typography>
       )}
 
       <div
-        className={`${style.input_container} ${style[type]}${disabledClassName}${errorClassName}`}
+        className={clsx(style.input_container, style[type], {
+          [style.disabled]: disabled,
+          [style.error]: isError,
+        })}
       >
         <input
           disabled={disabled}
           ref={inputRef}
           value={value}
           type={(isPasswordType && isViewPassword) || isSearchType ? 'text' : type}
-          className={`${style.input} ${style[type]}${errorClassName}${
-            value ? ` ${style.not_empty}` : ''
-          }`}
+          className={clsx(style.input, style[type], {
+            [style.not_empty]: !!value,
+            [style.error]: isError,
+          })}
           id={id}
           {...restProps}
         />
@@ -100,7 +103,7 @@ export const TextField = <T extends ElementType = 'input'>({
               disabled={disabled}
               onClick={handleClear}
               variant="icon"
-              IconStart={<CloseIcon className={`${style.icon}`} />}
+              IconStart={<CloseIcon className={style.icon} />}
             />
           </div>
         )}
@@ -108,7 +111,7 @@ export const TextField = <T extends ElementType = 'input'>({
         {isSearchType && (
           <SearchOutlineIcon
             onClick={handleIconClick}
-            className={`${style.icon} ${style.icon_search}`}
+            className={clsx(style.icon, style.icon_search)}
           />
         )}
 
@@ -121,9 +124,9 @@ export const TextField = <T extends ElementType = 'input'>({
               variant="icon"
               IconStart={
                 isViewPassword ? (
-                  <EyeOffOutlineIcon className={`${style.icon}`} />
+                  <EyeOffOutlineIcon className={style.icon} />
                 ) : (
-                  <EyeOutlineIcon className={`${style.icon}`} />
+                  <EyeOutlineIcon className={style.icon} />
                 )
               }
             />

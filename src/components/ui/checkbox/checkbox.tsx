@@ -1,5 +1,6 @@
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { forwardRef, ElementRef, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
 import { CheckboxIcon } from './checkbox-icon';
 import style from './checkbox.module.scss';
 import { Typography } from '../typography';
@@ -33,13 +34,11 @@ export const Checkbox = forwardRef<ElementRef<typeof RadixCheckbox.Root>, Checkb
   ) => (
     <label
       htmlFor={htmlFor}
-      className={`${style.label}${disabled ? ` ${style.label_disabled}` : ''}${
-        containerClassName ? ` ${containerClassName}` : ''
-      }`}
+      className={clsx(style.label, containerClassName, { [style.label_disabled]: disabled })}
     >
       <RadixCheckbox.Root
         onCheckedChange={onCheckedChange}
-        className={`${style.root}${className ? ` ${className}` : ''}`}
+        className={clsx(style.root, className)}
         checked={checked}
         ref={forwardRef}
         disabled={disabled}

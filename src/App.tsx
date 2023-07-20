@@ -2,6 +2,7 @@ import { Nullable } from '@common/types';
 import { Table } from '@components/table/table';
 import { TableBody } from '@components/table/table-body';
 import { Sort, TableHeader } from '@components/table/table-header';
+import { Header } from '@components/ui/header';
 
 import { useState } from 'react';
 
@@ -69,21 +70,24 @@ export const App = () => {
   const [sort, setSort] = useState<Nullable<Sort>>(null);
 
   return (
-    <div
-      style={{
-        padding: '10px',
-      }}
-    >
-      <Table>
-        <TableHeader
-          sortBy={sort}
-          columns={columns}
-          onSort={(a) => {
-            setSort(a);
-          }}
-        />
-        <TableBody data={data} />
-      </Table>
-    </div>
+    <>
+      <Header />
+      <div
+        style={{
+          padding: '10px',
+        }}
+      >
+        <Table>
+          <TableHeader
+            sortBy={sort}
+            columns={columns}
+            onSort={(a) => {
+              setSort(a);
+            }}
+          />
+          <TableBody data={data} />
+        </Table>
+      </div>
+    </>
   );
 };

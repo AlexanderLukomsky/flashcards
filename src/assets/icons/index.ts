@@ -7,3 +7,4 @@ export { ChevronUpIcon } from './chevron-up';
 export { EmailSentIcon } from './email-sent';
 export { StarIcon } from './star';
 export { LogoIcon } from './logo';
+export { PersonOutlineIcon } from './person-outline';

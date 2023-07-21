@@ -1,10 +1,16 @@
 import * as RadixAvatar from '@radix-ui/react-avatar';
-import './styles.css';
+import { ComponentPropsWithRef } from 'react';
+import clsx from 'clsx';
+import style from './style.module.scss';
 
-export type AvatarProps = { src: string };
+export type AvatarProps = { src: string } & ComponentPropsWithRef<'span'>;
 
-export const Avatar = ({ src }: AvatarProps) => (
-  <RadixAvatar.Root className="AvatarRoot">
-    <RadixAvatar.Image className="AvatarImage" src={src} alt="avatar" />
-  </RadixAvatar.Root>
-);
+export const Avatar = ({ src, ...props }: AvatarProps) => {
+  const { className, ...restProps } = props;
+
+  return (
+    <RadixAvatar.Root className={clsx(style.root, className)} {...restProps}>
+      <RadixAvatar.Image className={style.avatar} src={src} alt="avatar" />
+    </RadixAvatar.Root>
+  );
+};

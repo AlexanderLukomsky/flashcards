@@ -4,6 +4,7 @@ import { TableBody } from '@components/table/table-body';
 import { Sort, TableHeader } from '@components/table/table-header';
 
 import { Header } from '@components/ui/header';
+import { Range } from '@components/ui/range';
 
 import { useState } from 'react';
 
@@ -69,10 +70,17 @@ const data = [
 
 export const App = () => {
   const [sort, setSort] = useState<Nullable<Sort>>(null);
+  const [value, setValue] = useState([3, 97]);
 
   return (
     <>
       <Header />
+      <div style={{ display: 'flex' }}>
+        <span>{value[0]}</span>
+        <Range value={value} onValueChange={setValue} />
+        <span>{value[1]}</span>
+      </div>
+
       <div
         style={{
           padding: '10px',

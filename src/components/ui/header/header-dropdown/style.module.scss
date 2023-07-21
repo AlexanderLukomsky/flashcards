@@ -1,0 +1,14 @@
+.dropdown_head {
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  line-height: var(--line-height-s);
+}
+
+.caption {
+  color: var(--color-dark-100);
+}

@@ -1,0 +1,17 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 9.6875rem;
+  height: 1rem;
+}
+
+.track {
+  background-color: var(--color-primary-900);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 0.3125rem;
+}

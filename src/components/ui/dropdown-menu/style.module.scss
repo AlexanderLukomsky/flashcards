@@ -1,36 +1,69 @@
-.trigger {
-  z-index: 1;
+.trigger_button {
   background-color: transparent;
-  &:focus-visible {
-    outline: unset;
-  }
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .content {
+  margin-top: 0.75rem;
   position: relative;
+  padding: 0.75rem;
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
   border-radius: 0.25rem;
-  padding: 0.75rem;
+
   animation-name: slideLeftAndFade;
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
-.menu_arrow {
-  width: 16px;
-  height: 8px;
-  fill: var(--color-dark-700);
+.arrow {
+  position: absolute;
+  top: -5px;
+  right: calc(100% - 6px);
+  transform: rotate(45deg);
+  width: 0.71rem;
+  height: 0.71rem;
+  background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-500);
+  border-top: none;
+  border-left: none;
+}
+
+.item {
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: var(--color-light-100);
+  &:hover {
+    outline: none;
+    transform: scale(1.05);
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--color-dark-500);
+  }
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-of-type {
+    padding-bottom: 0;
+  }
 }
 
 @keyframes slideLeftAndFade {
   from {
     opacity: 0;
-    transform: translate(-10px, -10px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translate(0, 0);
+    transform: translateY(0);
   }
 }

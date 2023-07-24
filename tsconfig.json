@@ -9,7 +9,8 @@
     "paths": {
       "@assets/*": ["./assets/*"],
       "@common/*": ["./common/*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@pages/*": ["./pages/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -75,6 +75,7 @@ export const App = () => {
   return (
     <>
       <Header />
+
       <div style={{ display: 'flex' }}>
         <span>{value[0]}</span>
         <Range value={value} onValueChange={setValue} />

@@ -1,6 +1,7 @@
-import { SignInPage } from '@pages/auth/sign-in';
-import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { App } from 'App';
+import { MainLayout } from '@components/layouts/main';
+import { SignInPage } from '@pages/auth/sign-in';
 import { Auth } from '.';
 
 export const router = createBrowserRouter([
@@ -10,18 +11,7 @@ export const router = createBrowserRouter([
     children: [],
   },
   {
-    element: (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-        }}
-      >
-        <Outlet />
-      </div>
-    ),
+    element: <MainLayout />,
     children: [{ path: Auth.SignIn, element: <SignInPage /> }],
   },
 ]);

@@ -7,10 +7,15 @@ import { Typography } from '@components/ui/typography';
 import { ControlledTextfield } from '@components/ui/controlled';
 import { ControlledCheckbox } from '@components/ui/controlled/controlled-checkbox';
 import { Button } from '@components/ui/button';
+import { AuthPath } from '@components/router/router-path';
 import style from './style.module.scss';
 import rootStyle from '../../style.module.scss';
 
-export const SignInForm = () => {
+export type SignInFormProps = {
+  onSubmit: (data: SignInFormData) => void;
+};
+
+export const SignInForm = ({ onSubmit }: SignInFormProps) => {
   const {
     handleSubmit,
     control,
@@ -26,7 +31,7 @@ export const SignInForm = () => {
   const emailErrorMessage = errors.email?.message || '';
   const passwordErrorMessage = errors.password?.message || '';
 
-  const onSubmit = handleSubmit(() => {});
+  const handleFormSubmit = handleSubmit(onSubmit);
 
   return (
     <Card className={rootStyle.card}>
@@ -34,7 +39,7 @@ export const SignInForm = () => {
         Sign In
       </Typography>
 
-      <form onSubmit={onSubmit} className={rootStyle.form}>
+      <form onSubmit={handleFormSubmit} className={rootStyle.form}>
         <ControlledTextfield
           label="Email"
           control={control}
@@ -72,7 +77,7 @@ export const SignInForm = () => {
         Don&apos;t have an account?
       </Typography>
 
-      <Button component={Link} to="/" variant="link" className={rootStyle.link}>
+      <Button component={Link} to={AuthPath.SIGN_UP} variant="link" className={rootStyle.link}>
         Sign Up
       </Button>
     </Card>

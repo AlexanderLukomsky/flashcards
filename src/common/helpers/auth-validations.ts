@@ -34,7 +34,7 @@ const rememberMe = z.boolean();
 // result schemes
 export const signInSchema = z.object({ email, password, rememberMe });
 
-export const registrationSchema = z
+export const signUpSchema = z
   .object({ email, password, confirmPassword })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
@@ -47,6 +47,6 @@ export const newPasswordSchema = z.object({ password });
 
 // types
 export type SignInFormData = z.infer<typeof signInSchema>;
-export type RegistrationFormData = z.infer<typeof registrationSchema>;
+export type SignUpFormData = z.infer<typeof signUpSchema>;
 export type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;

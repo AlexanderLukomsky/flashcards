@@ -1,13 +1,18 @@
 import { Header } from '@components/ui/header';
 import { Outlet } from 'react-router-dom';
+import { useMeQuery } from 'services/auth';
 import style from './style.module.scss';
 
-export const MainLayout = () => (
-  <>
-    <Header />
+export const MainLayout = () => {
+  const { data } = useMeQuery();
 
-    <div className={style.container}>
-      <Outlet />
-    </div>
-  </>
-);
+  return (
+    <>
+      <Header data={data} />
+
+      <div className={style.container}>
+        <Outlet />
+      </div>
+    </>
+  );
+};

@@ -1,12 +1,13 @@
 import { Nullable } from '@common/types';
+import { AuthPath } from '@components/router/router-path';
 import { Table } from '@components/table/table';
 import { TableBody } from '@components/table/table-body';
 import { Sort, TableHeader } from '@components/table/table-header';
-
-import { Header } from '@components/ui/header';
+import { Button } from '@components/ui/button';
 import { Range } from '@components/ui/range';
-
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMeQuery } from 'services/auth';
 
 const columns = [
   {
@@ -72,9 +73,17 @@ export const App = () => {
   const [sort, setSort] = useState<Nullable<Sort>>(null);
   const [value, setValue] = useState([3, 97]);
 
+  const { isLoading } = useMeQuery();
+
+  if (isLoading) return <div>...loading</div>;
+
   return (
     <>
-      <Header />
+      <div style={{ display: 'flex', gap: '15px' }}>
+        <Button component={Link} to={AuthPath.SIGN_UP} variant="link">
+          registration
+        </Button>
+      </div>
 
       <div style={{ display: 'flex' }}>
         <span>{value[0]}</span>

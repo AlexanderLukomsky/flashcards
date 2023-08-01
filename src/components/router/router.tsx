@@ -1,21 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { App } from 'App';
+import { ProtectedRoutes } from '@components/layouts/protected';
+import { AuthRedirect } from '@components/layouts/auth-redirect';
 import { MainLayout } from '@components/layouts/main';
-import { SignInPage } from '@pages/auth/sign-in';
-import { RegistrationPage } from '@pages/auth/registration';
-import { Auth } from './router-path';
+import { protectedRoutes } from './protected-routes';
+import { unprotectedRoutes } from './unprotected-routes';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    children: [],
-  },
-  {
-    element: <MainLayout />,
+
     children: [
-      { path: Auth.SignIn, element: <SignInPage /> },
-      { path: Auth.Registration, element: <RegistrationPage /> },
+      {
+        element: <ProtectedRoutes />,
+        children: [{ element: <MainLayout />, children: protectedRoutes }],
+      },
+
+      { element: <AuthRedirect />, children: unprotectedRoutes },
     ],
   },
 ]);

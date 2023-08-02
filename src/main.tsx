@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { router } from '@components/router';
-import { store } from 'store';
+import { store } from 'redux/store';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/700.css';
 import './styles/index.scss';

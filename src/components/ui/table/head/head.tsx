@@ -1,7 +1,9 @@
-import { MouseEvent } from 'react';
+import { ComponentProps, MouseEvent } from 'react';
 import { Nullable } from '@common/types';
-import { TableHeaderCell } from '@components/table/th';
+import clsx from 'clsx';
 import style from './style.module.scss';
+import { Row } from '../row';
+import { HeadCell } from '../head-cell';
 
 export type Column = {
   title: string;
@@ -14,14 +16,18 @@ export type Sort = Nullable<{
   direction: 'asc' | 'desc';
 }>;
 
-export type TableHeaderProps = { columns: Column[]; sortBy: Sort; onSort: (sort: Sort) => void };
+export type HeadProps = {
+  columns: Column[];
+  sortBy: Sort;
+  onSort: (sort: Sort) => void;
+} & ComponentProps<'thead'>;
 
 enum DataAttributes {
   Sortable = 'data-sortable',
   Key = 'data-key',
 }
 
-export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
+export const Head = ({ columns, sortBy, onSort, className, ...props }: HeadProps) => {
   const handleSort = (event: MouseEvent<HTMLTableRowElement>) => {
     const { target } = event;
 
@@ -50,13 +56,13 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
   };
 
   return (
-    <thead className={style.thead}>
-      <tr onClick={handleSort}>
+    <thead className={clsx(style.thead, className)} {...props}>
+      <Row onClick={handleSort}>
         {columns.map((column) => {
           const showSort = column.isSortable && !!sortBy && sortBy.key === column.key;
 
           return (
-            <TableHeaderCell
+            <HeadCell
               title={column.title}
               showSort={showSort}
               key={column.key}
@@ -69,7 +75,7 @@ export const TableHeader = ({ columns, sortBy, onSort }: TableHeaderProps) => {
             />
           );
         })}
-      </tr>
+      </Row>
     </thead>
   );
 };

@@ -1,14 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { AuthEndpoints, MeTag } from './constants';
+import { TagTypes, flashcardsApi } from '@services/common/api';
+import { AuthEndpoints } from './endpoints';
 import { SignInRequestData, User } from './types';
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-
-  tagTypes: [MeTag],
-
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_API_URL, credentials: 'include' }),
-
+export const authApi = flashcardsApi.injectEndpoints({
   endpoints: (builder) => ({
     me: builder.query<User, void>({
       query: () => ({
@@ -16,7 +10,7 @@ export const authApi = createApi({
         url: AuthEndpoints.ME,
       }),
 
-      providesTags: [MeTag],
+      providesTags: [TagTypes.Me],
     }),
 
     signIn: builder.mutation<void, SignInRequestData>({
@@ -26,7 +20,7 @@ export const authApi = createApi({
         body,
       }),
 
-      invalidatesTags: [MeTag],
+      invalidatesTags: [TagTypes.Me],
     }),
 
     signUp: builder.mutation({

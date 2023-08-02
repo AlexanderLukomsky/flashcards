@@ -7,7 +7,13 @@ import style from './style.module.scss';
 import { Button } from '../button';
 import { HeaderDropdown } from './header-dropdown';
 
-export type BaseProps = { data?: any; className?: string };
+export type BaseProps = {
+  data?: {
+    avatar: string;
+    email: string;
+  };
+  className?: string;
+};
 
 export type HeaderProps = BaseProps & Omit<ComponentPropsWithoutRef<'header'>, keyof BaseProps>;
 

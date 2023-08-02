@@ -10,7 +10,8 @@
       "@assets/*": ["./assets/*"],
       "@common/*": ["./common/*"],
       "@components/*": ["./components/*"],
-      "@pages/*": ["./pages/*"]
+      "@pages/*": ["./pages/*"],
+      "@services/*": ["./services/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

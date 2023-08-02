@@ -4,9 +4,9 @@ import { Button } from '@components/ui/button';
 import { Range } from '@components/ui/range';
 import { Table } from '@components/ui/table';
 import { Sort } from '@components/ui/table/head';
+import { useGetDecksQuery } from '@services/decks/api';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useGetDecksQuery } from 'services/decks/api';
 
 const columns = [
   {

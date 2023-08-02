@@ -1,13 +1,12 @@
 import { Nullable } from '@common/types';
 import { AuthPath } from '@components/router/router-path';
-import { Table } from '@components/table/table';
-import { TableBody } from '@components/table/table-body';
-import { Sort, TableHeader } from '@components/table/table-header';
 import { Button } from '@components/ui/button';
 import { Range } from '@components/ui/range';
+import { Table } from '@components/ui/table';
+import { Sort } from '@components/ui/table/head';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMeQuery } from 'services/auth';
+import { useGetDecksQuery } from 'services/decks/api';
 
 const columns = [
   {
@@ -36,46 +35,15 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    title: 'Project A',
-    cardsCount: 10,
-    updated: '2023-07-07',
-    createdBy: 'John Doe',
-  },
-  {
-    title: 'Project B',
-    cardsCount: 5,
-    updated: '2023-07-06',
-    createdBy: 'Jane Smith',
-  },
-  {
-    title: 'Project C',
-    cardsCount: 8,
-    updated: '2023-07-05',
-    createdBy: 'Alice Johnson',
-  },
-  {
-    title: 'Project D',
-    cardsCount: 3,
-    updated: '2023-07-07',
-    createdBy: 'Bob Anderson',
-  },
-  {
-    title: 'Project E',
-    cardsCount: 12,
-    updated: '2023-07-04',
-    createdBy: 'Emma Davis',
-  },
-];
-
 export const App = () => {
   const [sort, setSort] = useState<Nullable<Sort>>(null);
   const [value, setValue] = useState([3, 97]);
 
-  const { isLoading } = useMeQuery();
+  const { data: decks, isLoading } = useGetDecksQuery();
 
-  if (isLoading) return <div>...loading</div>;
+  console.log(decks);
+
+  if (isLoading) return null;
 
   return (
     <>
@@ -96,16 +64,27 @@ export const App = () => {
           padding: '10px',
         }}
       >
-        <Table>
-          <TableHeader
+        <Table.Root>
+          <Table.Head
             sortBy={sort}
             columns={columns}
             onSort={(a) => {
               setSort(a);
             }}
           />
-          <TableBody data={data} />
-        </Table>
+
+          <Table.Body>
+            {decks.items.map((item: any) => (
+              <Table.Row key={item.id}>
+                <Table.Cell title={item.name} />
+                <Table.Cell title={item.cardsCount} />
+                <Table.Cell title={item.updated} />
+                <Table.Cell title={item.author.name} />
+                <Table.Cell title="icons" />
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
       </div>
     </>
   );

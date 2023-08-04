@@ -5,21 +5,21 @@ import style from './style.module.scss';
 import { Row } from '../row';
 import { HeadCell } from '../head-cell';
 
-export type Column = {
+type Column = {
   title: string;
   key: string;
   isSortable?: boolean;
 };
 
-export type Sort = Nullable<{
-  key: string;
+export type Sort<T> = Nullable<{
+  key: T;
   direction: 'asc' | 'desc';
 }>;
 
-export type HeadProps = {
-  columns: Column[];
-  sortBy: Sort;
-  onSort: (sort: Sort) => void;
+export type HeadProps<T extends Column> = {
+  columns: T[];
+  sortBy: Sort<T['key']>;
+  onSort: (sort: Sort<T['key']>) => void;
 } & ComponentProps<'thead'>;
 
 enum DataAttributes {
@@ -27,7 +27,13 @@ enum DataAttributes {
   Key = 'data-key',
 }
 
-export const Head = ({ columns, sortBy, onSort, className, ...props }: HeadProps) => {
+export const Head = <T extends Column>({
+  columns,
+  sortBy,
+  onSort,
+  className,
+  ...props
+}: HeadProps<T>) => {
   const handleSort = (event: MouseEvent<HTMLTableRowElement>) => {
     const { target } = event;
 

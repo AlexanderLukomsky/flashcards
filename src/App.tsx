@@ -1,62 +1,85 @@
-import { Nullable } from '@common/types';
-import { AuthPath } from '@components/router/router-path';
-import { Button } from '@components/ui/button';
 import { Range } from '@components/ui/range';
 import { Table } from '@components/ui/table';
 import { Sort } from '@components/ui/table/head';
+import {
+  DecksSortKey,
+  changeRangeValues,
+  selectDecksState,
+  setCardsCount,
+  setSort,
+} from '@redux/slices/decks-slice';
+import { useAppDispatch } from '@redux/store/hooks';
 import { useGetDecksQuery } from '@services/decks/api';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const columns = [
   {
     key: 'name',
     title: 'Name',
     isSortable: true,
-  },
+  } as const,
   {
     key: 'cardsCount',
     title: 'Cards',
     isSortable: true,
-  },
+  } as const,
   {
     key: 'updated',
     title: 'Last Updated',
     isSortable: true,
-  },
+  } as const,
   {
-    key: 'createdBy',
+    key: 'userId',
     title: 'Created by',
     isSortable: true,
-  },
+  } as const,
   {
     key: 'options',
     title: '',
-  },
+  } as const,
 ];
 
 export const App = () => {
-  const [sort, setSort] = useState<Nullable<Sort>>(null);
-  const [value, setValue] = useState([3, 97]);
+  const dispatch = useAppDispatch();
 
-  const { data: decks, isLoading } = useGetDecksQuery();
+  const { params: decksRequestParams, rangeValues, sort } = useSelector(selectDecksState);
 
-  console.log(decks);
+  const { data: decks, isLoading } = useGetDecksQuery(decksRequestParams);
+
+  const handleChangeRange = (value: number[]) => {
+    dispatch(changeRangeValues(value));
+  };
+
+  const handleCommitRange = () => {
+    dispatch(setCardsCount());
+  };
+
+  const handleSort = (sort: Sort<DecksSortKey | 'options'>) => {
+    if (!sort) {
+      dispatch(setSort(null));
+
+      return;
+    }
+
+    if (sort.key !== 'options') {
+      const { key, direction } = sort;
+
+      dispatch(setSort({ key, direction }));
+    }
+  };
 
   if (isLoading) return null;
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '15px' }}>
-        <Button component={Link} to={AuthPath.SIGN_UP} variant="link">
-          registration
-        </Button>
-      </div>
-
       <div style={{ display: 'flex' }}>
-        <span>{value[0]}</span>
-        <Range value={value} onValueChange={setValue} />
-        <span>{value[1]}</span>
+        <span>{rangeValues[0]}</span>
+        <Range
+          value={rangeValues}
+          onValueChange={handleChangeRange}
+          onValueCommit={handleCommitRange}
+        />
+        <span>{rangeValues[1]}</span>
       </div>
 
       <div
@@ -65,19 +88,13 @@ export const App = () => {
         }}
       >
         <Table.Root>
-          <Table.Head
-            sortBy={sort}
-            columns={columns}
-            onSort={(a) => {
-              setSort(a);
-            }}
-          />
+          <Table.Head sortBy={sort} columns={columns} onSort={handleSort} />
 
           <Table.Body>
-            {decks.items.map((item: any) => (
+            {decks?.items.map((item) => (
               <Table.Row key={item.id}>
                 <Table.Cell title={item.name} />
-                <Table.Cell title={item.cardsCount} />
+                <Table.Cell title={item.cardsCount.toString()} />
                 <Table.Cell title={item.updated} />
                 <Table.Cell title={item.author.name} />
                 <Table.Cell title="icons" />

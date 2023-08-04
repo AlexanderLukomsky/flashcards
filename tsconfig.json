@@ -11,7 +11,8 @@
       "@common/*": ["./common/*"],
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
-      "@services/*": ["./services/*"]
+      "@services/*": ["./services/*"],
+      "@redux/*": ["./redux/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

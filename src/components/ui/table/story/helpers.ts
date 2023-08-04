@@ -17,7 +17,7 @@ const localSort = (
     : [...data].sort((a, b) => b[key].localeCompare(a[key]));
 };
 
-export const sortedData = (data: DataType, sort: Sort) => {
+export const sortedData = (data: DataType, sort: Sort<string>) => {
   if (!sort?.direction) return data;
 
   if (sort.key === 'name') {

@@ -14,7 +14,7 @@ const meta = {
 type Story = StoryObj<typeof meta>;
 
 const Template = () => {
-  const [sort, setSort] = useState<Nullable<Sort>>(null);
+  const [sort, setSort] = useState<Nullable<Sort<string>>>(null);
 
   return (
     <Table.Root>

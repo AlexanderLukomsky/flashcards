@@ -1,6 +1,6 @@
 import { TagTypes, flashcardsApi } from '@services/common/api';
 import { AuthEndpoints } from './endpoints';
-import { SignInRequestData, User } from './types';
+import { SignInRequestData, SignUpRequestData, SignUpResponseData, User } from './types';
 
 export const authApi = flashcardsApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -23,13 +23,14 @@ export const authApi = flashcardsApi.injectEndpoints({
       invalidatesTags: [TagTypes.Me],
     }),
 
-    signUp: builder.mutation({
-      query: () => ({
+    signUp: builder.mutation<SignUpResponseData, SignUpRequestData>({
+      query: (body) => ({
         method: 'POST',
         url: AuthEndpoints.SIGN_UP,
+        body,
       }),
     }),
   }),
 });
 
-export const { useMeQuery, useSignInMutation } = authApi;
+export const { useMeQuery, useSignInMutation, useSignUpMutation } = authApi;

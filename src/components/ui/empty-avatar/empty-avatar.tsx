@@ -1,19 +1,19 @@
-import { AvatarDefaultIcon } from '@assets/icons';
+import { EmptyAvatarIcon } from '@assets/icons';
 import clsx from 'clsx';
 import { ComponentPropsWithRef } from 'react';
 import style from './style.module.scss';
 
-export type DefaultAvatarProps = {
+export type EmptyAvatarProps = {
   containerProps?: ComponentPropsWithRef<'div'>;
   svgProps?: ComponentPropsWithRef<'svg'>;
 };
 
-export const DefaultAvatar = ({ containerProps, svgProps }: DefaultAvatarProps) => {
+export const EmptyAvatar = ({ containerProps, svgProps }: EmptyAvatarProps) => {
   const { className, ...restContainerProps } = { ...containerProps };
 
   return (
     <div className={clsx(style.container, className)} {...restContainerProps}>
-      <AvatarDefaultIcon {...svgProps} />
+      <EmptyAvatarIcon {...svgProps} />
     </div>
   );
 };

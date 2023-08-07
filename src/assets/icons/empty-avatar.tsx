@@ -18,4 +18,4 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
   </svg>
 );
 
-export const AvatarDefaultIcon = forwardRef(SvgComponent);
+export const EmptyAvatarIcon = forwardRef(SvgComponent);

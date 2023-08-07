@@ -8,4 +8,4 @@ export { EmailSentIcon } from './email-sent';
 export { StarIcon } from './star';
 export { LogoIcon } from './logo';
 export { PersonOutlineIcon } from './person-outline';
-export { AvatarDefaultIcon } from './avatar-default';
+export { EmptyAvatarIcon } from './empty-avatar';

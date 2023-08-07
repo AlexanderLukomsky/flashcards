@@ -25,15 +25,7 @@ export const Header = ({ data, className, ...restProps }: HeaderProps) => (
       </Link>
 
       {data ? (
-        <HeaderDropdown
-          src={
-            data.avatar
-              ? data.avatar
-              : 'https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80'
-          }
-          userName="Hanna"
-          email={data.email}
-        />
+        <HeaderDropdown src={data.avatar} userName="Hanna" email={data.email} />
       ) : (
         <Button component={Link} to={AuthPath.SIGN_IN}>
           Sign In

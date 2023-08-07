@@ -9,3 +9,6 @@ export type User = {
 };
 
 export type SignInRequestData = { email: string; password: string; rememberMe: boolean };
+
+export type SignUpRequestData = { email: string; password: string };
+export type SignUpResponseData = { id: string; name: string; email: string };

@@ -10,7 +10,11 @@ import { AuthPath } from '@components/router/router-path';
 import style from './style.module.scss';
 import rootStyle from '../../style.module.scss';
 
-export const SignUpForm = () => {
+export type SignUpFormProps = {
+  onSubmit: (data: Omit<SignUpFormData, 'confirmPassword'>) => void;
+};
+
+export const SignUpForm = ({ onSubmit }: SignUpFormProps) => {
   const {
     handleSubmit,
     control,
@@ -28,7 +32,11 @@ export const SignUpForm = () => {
   const passwordErrorMessage = errors.password?.message || '';
   const confirmPasswordErrorMessage = errors.confirmPassword?.message || '';
 
-  const onSubmit = handleSubmit(() => {});
+  const handleFormSubmit = handleSubmit((data) => {
+    const { email, password } = data;
+
+    onSubmit({ email, password });
+  });
 
   return (
     <Card className={rootStyle.card}>
@@ -36,7 +44,7 @@ export const SignUpForm = () => {
         Sign Up
       </Typography>
 
-      <form onSubmit={onSubmit} className={rootStyle.form}>
+      <form onSubmit={handleFormSubmit} className={rootStyle.form}>
         <ControlledTextfield
           label="Email"
           control={control}

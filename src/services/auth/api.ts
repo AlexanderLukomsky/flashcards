@@ -4,7 +4,7 @@ import { SignInRequestData, SignUpRequestData, SignUpResponseData, User } from '
 
 export const authApi = flashcardsApi.injectEndpoints({
   endpoints: (builder) => ({
-    me: builder.query<User, void>({
+    me: builder.query<User | null, void>({
       query: () => ({
         method: 'GET',
         url: AuthEndpoints.ME,
@@ -30,7 +30,16 @@ export const authApi = flashcardsApi.injectEndpoints({
         body,
       }),
     }),
+
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        method: 'POST',
+        url: AuthEndpoints.LOGOUT,
+      }),
+
+      invalidatesTags: [TagTypes.Me],
+    }),
   }),
 });
 
-export const { useMeQuery, useSignInMutation, useSignUpMutation } = authApi;
+export const { useMeQuery, useSignInMutation, useSignUpMutation, useLogoutMutation } = authApi;

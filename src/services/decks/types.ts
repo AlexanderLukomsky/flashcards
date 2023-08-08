@@ -19,9 +19,18 @@ export type Deck = {
 export type DecksResponse = Paginated<Deck> & { maxCardsCount: number };
 
 export type DecksRequestParams = {
-  minCardsCount?: number;
-  maxCardsCount?: number;
+  minCardsCount: number;
+  maxCardsCount: number;
   name?: string;
   authorId?: string;
-  orderBy?: Nullable<string>;
+  orderBy?: Nullable<
+    | 'name-asc'
+    | 'name-desc'
+    | 'updated-asc'
+    | 'updated-desc'
+    | 'cardsCount-asc'
+    | 'cardsCount-desc'
+    | 'userId-asc'
+    | 'userId-desc'
+  >;
 };

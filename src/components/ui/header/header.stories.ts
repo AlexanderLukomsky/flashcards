@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { withRouter } from 'storybook-addon-react-router-v6';
 import { Header } from '.';
 
 type Story = StoryObj<typeof meta>;
@@ -11,7 +11,10 @@ const meta = {
 } satisfies Meta<typeof Header>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    onSignOut: () => {},
+  },
+  decorators: [withRouter],
 };
 
 export default meta;

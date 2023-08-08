@@ -32,10 +32,11 @@ export const DropdownMenu = ({ trigger, children }: DropdownMenuProps) => {
 export type DropdownMenuItemProps = {
   children?: ReactNode;
   title?: string;
+  onSelect?: (event: Event) => void;
 };
 
-export const DropdownMenuItem = ({ children, title }: DropdownMenuItemProps) => (
-  <RadixDropdownMenu.Item className={style.item}>
+export const DropdownMenuItem = ({ children, title, onSelect }: DropdownMenuItemProps) => (
+  <RadixDropdownMenu.Item className={style.item} onSelect={onSelect}>
     {children}
 
     <Typography variant="caption" component="span">

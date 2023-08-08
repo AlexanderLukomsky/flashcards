@@ -12,7 +12,13 @@ export const decksApi = createApi({
       query: (params) => ({
         method: 'GET',
         url: DecksEndpoints.GET_DECKS,
-        params,
+        params: {
+          minCardsCount: params.minCardsCount,
+          maxCardsCount: params.maxCardsCount,
+          name: params.name,
+          authorId: params.authorId,
+          orderBy: params.orderBy ?? undefined,
+        },
       }),
     }),
   }),

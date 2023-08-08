@@ -5,9 +5,14 @@ import { LogoutIcon, PersonOutlineIcon } from '@assets/icons';
 import { EmptyAvatar } from '@components/ui/empty-avatar';
 import style from './style.module.scss';
 
-export type HeaderDropdownProps = { src?: string; userName: string; email: string };
+export type HeaderDropdownProps = {
+  src?: string;
+  userName: string;
+  email: string;
+  onSignOut: () => void;
+};
 
-export const HeaderDropdown = ({ src, userName, email }: HeaderDropdownProps) => (
+export const HeaderDropdown = ({ src, userName, email, onSignOut }: HeaderDropdownProps) => (
   <DropdownMenu trigger={src ? <Avatar src={src} /> : <EmptyAvatar />}>
     <DropdownMenuItem>
       {src ? <Avatar src={src} /> : <EmptyAvatar />}
@@ -27,7 +32,7 @@ export const HeaderDropdown = ({ src, userName, email }: HeaderDropdownProps) =>
       <PersonOutlineIcon />
     </DropdownMenuItem>
 
-    <DropdownMenuItem title="Sign Out">
+    <DropdownMenuItem title="Sign Out" onSelect={onSignOut}>
       <LogoutIcon />
     </DropdownMenuItem>
   </DropdownMenu>

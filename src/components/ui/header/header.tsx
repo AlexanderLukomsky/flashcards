@@ -11,13 +11,14 @@ export type BaseProps = {
   data?: {
     avatar: string;
     email: string;
-  };
+  } | null;
   className?: string;
+  onSignOut: () => void;
 };
 
 export type HeaderProps = BaseProps & Omit<ComponentPropsWithoutRef<'header'>, keyof BaseProps>;
 
-export const Header = ({ data, className, ...restProps }: HeaderProps) => (
+export const Header = ({ data, className, onSignOut, ...restProps }: HeaderProps) => (
   <header className={clsx(style.header, className)} {...restProps}>
     <div className={style.container}>
       <Link to="/" className={style.logo_link}>
@@ -25,7 +26,12 @@ export const Header = ({ data, className, ...restProps }: HeaderProps) => (
       </Link>
 
       {data ? (
-        <HeaderDropdown src={data.avatar} userName="Hanna" email={data.email} />
+        <HeaderDropdown
+          src={data.avatar}
+          userName="Hanna"
+          email={data.email}
+          onSignOut={onSignOut}
+        />
       ) : (
         <Button component={Link} to={AuthPath.SIGN_IN}>
           Sign In

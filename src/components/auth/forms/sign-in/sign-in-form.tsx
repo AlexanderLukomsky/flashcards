@@ -64,7 +64,12 @@ export const SignInForm = ({ onSubmit }: SignInFormProps) => {
           containerClassName={style.checkbox}
         />
 
-        <Typography variant="body2" component={Link} to="/" className={style.forgot_password}>
+        <Typography
+          variant="body2"
+          component={Link}
+          to={AuthPath.FORGOT_PASSWORD}
+          className={style.forgot_password}
+        >
           Forgot Password?
         </Typography>
 

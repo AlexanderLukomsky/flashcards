@@ -6,6 +6,7 @@ import { Button } from '@components/ui/button';
 import { ControlledTextfield } from '@components/ui/controlled';
 import { Typography } from '@components/ui/typography';
 import { ForgotPasswordFormData, forgotPasswordSchema } from '@common/helpers';
+import { AuthPath } from '@components/router/router-path';
 import rootStyle from '../../style.module.scss';
 import style from './style.module.scss';
 
@@ -51,7 +52,7 @@ export const ForgotPasswordForm = () => {
       <Typography variant="body2" className={rootStyle.prompt}>
         Did you remember your password?
       </Typography>
-      <Button component={Link} to="/" variant="link" className={rootStyle.link}>
+      <Button component={Link} to={AuthPath.SIGN_IN} variant="link" className={rootStyle.link}>
         Try logging in
       </Button>
     </Card>
